@@ -5,7 +5,6 @@ body, html, #root, .App {
 body {
   background-image: url(./bg.jpeg);
   background-size: 100%;
-
 }
 
 .App {
@@ -38,7 +37,6 @@ a {
 
 .App header .active-link {
   background-color: rgb(250, 185, 63);
-  /* background-color: rgb(106, 250, 250); */
 }
 
 .App main {
@@ -63,9 +61,7 @@ a {
   align-items: center;
   flex-direction: column;
   flex-wrap: wrap;
-
 }
-
 
 form { 
   text-align: right;
@@ -91,7 +87,6 @@ select {
 .list-item {
   width: fit-content;
 }
-
 
 .needed {
   cursor: pointer;
