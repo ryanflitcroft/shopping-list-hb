@@ -9,12 +9,10 @@ export default function AuthPage({
 
   async function handleSignIn(e) {
     e.preventDefault();
-      
     const user = await signIn(email, password);
-
     setUser(user);
   }
-    
+
   async function handleSignUp() {
 
     const user = await signUp(email, password);

@@ -2,40 +2,41 @@ import { useState } from 'react';
 import { createListItem } from './services/fetch-utils';
 
 export default function ListItemForm({ fetchItems }) {
-  // you'll need to track the name and quantity in state
+  const [listItem, setListItem] = useState('');
+  const [quantity, setQuantity] = useState(1);
 
   async function handleSubmit(e) {
     e.preventDefault();
-    
-    // make a new list item in supabase using the form values stored in state
+    const item = {
+      name: listItem,
+      quantity,
+      has_been_bought: false
+    };
 
-    // refetch the items using the handler functionpassed down as a prop
-
-    // clear the name and quantity in state to refresh the form
+    await createListItem(item);
+    await fetchItems();
+    setListItem('');
+    setQuantity(1);
   }
 
   return (
     <div className='new-item-form-container'>
-      {/* on submit, call the handleSubmit function */}
-      <form>
+      <form onSubmit={handleSubmit}>
           I need . . . 
         <label>
             Quantity
-          {/* on change, update the quantity in state */}
-          <input 
-            // this should be a controlled input, soi set the value based on state
-            required 
+          <input onChange={(e) => setQuantity(e.target.value)}
+            value={quantity}
             type="number" 
             name="quantity"
-          />
+            required />
         </label>
         <label>
             Name
-          {/* on change, update the name in state */}
-          <input
-            // this should be a controlled input, soi set the value based on state 
-            required 
-            name="name" />
+          <input onChange={(e) => setListItem(e.target.value)}
+            value={listItem}
+            name="name"
+            required />
         </label>
         <button>Add item</button>
       </form>
